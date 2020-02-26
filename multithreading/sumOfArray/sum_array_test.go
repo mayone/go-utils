@@ -2,8 +2,6 @@ package sumOfArray
 
 import (
 	"math/rand"
-	"os"
-	"runtime/trace"
 	"testing"
 	"time"
 )
@@ -18,18 +16,6 @@ func randArray(len int) []int {
 }
 
 func TestSumArray(t *testing.T) {
-	f, err := os.Create("trace.out")
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
-
-	err = trace.Start(f)
-	if err != nil {
-		panic(err)
-	}
-	defer trace.Stop()
-
 	a := []int{}
 	expected := sumOfArraySequential(a)
 	result := sumOfArrayParallel(a)
