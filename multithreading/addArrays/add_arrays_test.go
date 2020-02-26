@@ -1,4 +1,4 @@
-package multithreading
+package addArrays
 
 import (
 	"reflect"

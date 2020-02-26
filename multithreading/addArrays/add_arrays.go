@@ -1,4 +1,4 @@
-package multithreading
+package addArrays
 
 import "github.com/mayone/OGGo/Go-Utilities/multithreading/threadpool"
 
@@ -9,7 +9,7 @@ type task struct {
 }
 
 func (t *task) Run(tInfo threadpool.ThreadInfo) {
-	offset := tInfo.Id
+	offset := tInfo.ID
 	step := tInfo.NumThreads
 	for i := offset; i < len(t.c); i += step {
 		t.c[i] = t.a[i] + t.b[i]
