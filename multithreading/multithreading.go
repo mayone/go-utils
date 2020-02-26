@@ -17,13 +17,16 @@ func (t *task) Run(tInfo threadpool.ThreadInfo) {
 }
 
 func addArraysParallel(a []int, b []int) []int {
-
 	if len(a) != len(b) {
 		return nil
 	}
 	c := make([]int, len(a))
 	tp := threadpool.NewThreadPool()
-	task := &task{a: a, b: b, c: c}
+	task := &task{
+		a: a,
+		b: b,
+		c: c,
+	}
 	tp.RunWorkers(task)
 
 	return c
