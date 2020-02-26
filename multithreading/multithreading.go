@@ -9,8 +9,8 @@ type task struct {
 }
 
 func (t *task) Run(tInfo threadpool.ThreadInfo) {
-	offset := tInfo.id
-	step := tInfo.numThreads
+	offset := tInfo.Id
+	step := tInfo.NumThreads
 	for i := offset; i < len(t.c); i += step {
 		t.c[i] = t.a[i] + t.b[i]
 	}

@@ -6,8 +6,8 @@ import (
 )
 
 type ThreadInfo struct {
-	id         int
-	numThreads int
+	Id         int
+	NumThreads int
 }
 
 type threadsPool struct {
@@ -16,7 +16,7 @@ type threadsPool struct {
 
 func (tp threadsPool) worker(wg *sync.WaitGroup, id int, task Runnable) {
 	defer wg.Done()
-	threadInfo := ThreadInfo{id: id, numThreads: tp.numThreads}
+	threadInfo := ThreadInfo{Id: id, NumThreads: tp.numThreads}
 	task.Run(threadInfo)
 }
 
