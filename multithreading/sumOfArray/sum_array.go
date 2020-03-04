@@ -1,4 +1,4 @@
-package sumOfArray
+package sumofarray
 
 import (
 	"github.com/mayone/OGGo/Go-Utilities/multithreading/threadpool"
