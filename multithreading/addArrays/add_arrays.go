@@ -1,4 +1,4 @@
-package addArrays
+package addarrays
 
 import "github.com/mayone/OGGo/Go-Utilities/multithreading/threadpool"
 
