@@ -1,7 +1,7 @@
 package sumofarray
 
 import (
-	"github.com/mayone/OGGo/Go-Utilities/multithreading/threadpool"
+	"github.com/mayone/Go-Utilities/multithreading/threadpool"
 )
 
 type task struct {

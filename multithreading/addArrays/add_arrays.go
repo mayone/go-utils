@@ -1,6 +1,6 @@
 package addarrays
 
-import "github.com/mayone/OGGo/Go-Utilities/multithreading/threadpool"
+import "github.com/mayone/Go-Utilities/multithreading/threadpool"
 
 type task struct {
 	a []int
