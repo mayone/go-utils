@@ -1,14 +1,12 @@
 package sumofarray
 
 import (
-	"sync/atomic"
-
 	"github.com/mayone/Go-Utilities/multithreading/threadpool"
 )
 
 type task struct {
-	a   []int
-	sum *int64
+	a  []int
+	ch chan int64
 }
 
 func (t *task) Run(tInfo threadpool.ThreadInfo) {
@@ -19,8 +17,10 @@ func (t *task) Run(tInfo threadpool.ThreadInfo) {
 	for i := offset; i < len(t.a); i += step {
 		sum += int64(t.a[i])
 	}
-	atomic.AddInt64(t.sum, sum)
-	// *t.sum += sum
+	select {
+	case current := <-t.ch:
+		t.ch <- current + sum
+	}
 }
 
 func sumOfArrayParallel(a []int) int64 {
@@ -28,13 +28,16 @@ func sumOfArrayParallel(a []int) int64 {
 		return 0
 	}
 	var sum int64 = 0
+	ch := make(chan int64, 1)
+	ch <- sum
 
 	tp := threadpool.NewThreadPool()
 	task := &task{
-		a:   a,
-		sum: &sum,
+		a:  a,
+		ch: ch,
 	}
 	tp.RunWorkers(task)
+	sum = <-ch
 
 	return sum
 }
