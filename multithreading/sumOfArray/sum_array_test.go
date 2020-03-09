@@ -39,7 +39,7 @@ func Test_sumOfArray(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want int
+		want int64
 	}{
 		{
 			name: "Sum of empty array",
