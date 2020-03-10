@@ -16,7 +16,7 @@ func (t *task) Run(tInfo threadpool.ThreadInfo) {
 	}
 }
 
-func addArraysParallel(a []int, b []int) []int {
+func addArraysParallel(a, b []int) []int {
 	if len(a) != len(b) {
 		return nil
 	}
@@ -32,7 +32,7 @@ func addArraysParallel(a []int, b []int) []int {
 	return c
 }
 
-func addArraysSequential(a []int, b []int) []int {
+func addArraysSequential(a, b []int) []int {
 	if len(a) != len(b) {
 		return nil
 	}
