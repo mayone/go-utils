@@ -1,5 +1,11 @@
-package helloworld
+package main
+
+import (
+	"fmt"
+
+	"github.com/mayone/Go-Utilities/helloworld/greet"
+)
 
 func main() {
-	// fmt.Println(Greet("Daddy", "Sweaty"))
+	fmt.Println(greet.Greet("Sweaty", "Sweety"))
 }
