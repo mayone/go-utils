@@ -28,6 +28,13 @@ func Test_strlen(t *testing.T) {
 		want int
 	}{
 		{
+			name: "Empty string",
+			args: args{
+				str: "",
+			},
+			want: 0,
+		},
+		{
 			name: "String with English characters",
 			args: args{
 				str: "Hello World",
