@@ -14,7 +14,8 @@ var (
 	goVersion      string
 )
 
-func BuildInfo() string {
+// Info returns building setup info in string
+func Info() string {
 	return fmt.Sprintf(`
 Name             : %v
 Release          : %v
