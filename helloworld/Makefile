@@ -2,6 +2,7 @@ SHELL = bash
 
 APP := main
 SEM_VER = 1.0.0
+PROJ_NAME := $(shell basename "$(PWD)")
 BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 COMMIT_SHA_SHORT := $(shell git rev-parse --short HEAD)
 COMMIT_TIME := $(shell git log -1 --format=%ci)
@@ -21,16 +22,20 @@ LDFLAGS = -ldflags \
 	-X '${REPO}/buildinfo.goVersion=${GO_VER}'"
 BUILD_TAGS = -tags helloworld
 
-all: test build
+## [build]: Build app
+all: build
 build:
 	go build ${LDFLAGS} ${BUILD_TAGS} -o ${OUTPUT_DIR}/bin/${APP}
 
+## run: Run app
 run:
 	${OUTPUT_DIR}/bin/${APP}
 
+## test: Run tests
 test:
 	go test ${LDFLAGS} ${BUILD_TAGS} -v ./...
 
+## clean: Clean build files.
 clean:
 	rm -rf ${OUTPUT_DIR}
 
@@ -38,3 +43,9 @@ tags:
 	@echo -n ${SEM_VER}\,latest > .tags
 
 .PHONY: build clean
+
+help: Makefile
+	@echo
+	@echo " Choose a command run in "$(PROJ_NAME)":"
+	@echo
+	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
