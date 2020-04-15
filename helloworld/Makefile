@@ -20,7 +20,7 @@ LDFLAGS = -ldflags \
 	-X ${REPO}/buildinfo.lastCommitSHA=${COMMIT_SHA_SHORT} \
 	-X '${REPO}/buildinfo.lastCommitTime=${COMMIT_TIME}' \
 	-X '${REPO}/buildinfo.goVersion=${GO_VER}'"
-BUILD_TAGS = -tags helloworld
+BUILD_TAGS = -tags dev
 
 ## [build]: Build app
 all: build
