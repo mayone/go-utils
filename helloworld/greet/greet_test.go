@@ -1,6 +1,11 @@
 package greet
 
-import "testing"
+import (
+	"fmt"
+	"os"
+	"runtime/trace"
+	"testing"
+)
 
 func TestGreet(t *testing.T) {
 	type args struct {
@@ -36,4 +41,29 @@ func TestGreet(t *testing.T) {
 			}
 		})
 	}
+}
+
+func BenchmarkMemory(b *testing.B) {
+	var got string
+
+	f, err := os.Create("trace.out")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	err = trace.Start(f)
+	if err != nil {
+		panic(err)
+	}
+
+	for i := 0; i < b.N; i++ {
+		got = Greet("Benchmark", "World")
+	}
+
+	trace.Stop()
+
+	b.StopTimer()
+
+	_ = fmt.Sprintf("%v", got)
 }
